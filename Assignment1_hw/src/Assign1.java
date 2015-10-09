@@ -1,36 +1,45 @@
 import javax.swing.JOptionPane;
 
-public class Assignment3 {
-
+public class PrintNumbers {
 	public enum AccountType {
 		Admin, Staff, Student
 	};
 
 	public static void main(String[] args) {
+		String[] user = { "cqd2292", "name", "csc200" };
+		String[] password = { "password", "pass", "not" };
+		String[] acType = { "Admin", "Staff", "Student" };
+		String[] TrueAccount = { "cqd2292passwordAdmin" };
+		boolean found = false;
 
-		String user = "cqd2292";
-		String pass = "password";
-		String euser, epass;
-		// String user2 = "cdinh";
-		// String pass2 = "password1";
-		// String user3 = "Tanes";
-		// String pass3 = "password2";
-		int limit = 3, x = 1;
 		AccountType[] account = { AccountType.Admin, AccountType.Staff, AccountType.Student };
 
-		euser = JOptionPane.showInputDialog("Enter Username");
+		String euser = JOptionPane.showInputDialog("Enter Username");
+		/*
+		 * if (x.equals(user[0])) { } int y =0; int a = 0;
+		 */
+		// if(euser.equals(user[0]))
+		String x = "", y = "", z = "", a = "";
+		x.equals(user[0]);
+		y.equals(password[0]);
+		z.equals(acType[0]);
+		a.equals(x + y + z);
+		int i = 0;
+		while (i <= 2) {
+			if (euser.equals(user[i])) {
+				found = true;
+				// break;
+			}
 
-		// loop until you enter a valid username
-		while (euser != user || x < limit) {
-			// when you enter a valid username program will prompt for for you
-			// to enter password
-			if (euser.equals(user)) {
-				epass = JOptionPane.showInputDialog("Enter Password");
-				if (epass.equals(pass)) {
-					// if you enter correct password, you will be prompt with
-					// drop down box to select your account type
+			// i++;
+
+			if (found) {
+				String epass = JOptionPane.showInputDialog("Enter Password");
+				if (epass.equals(password[i])) {
 					AccountType select = (AccountType) JOptionPane.showInputDialog(null, "Select account type",
 							"Account Type", JOptionPane.INFORMATION_MESSAGE, null, account, account[0]);
+					String b = "";
+					b.equals(euser + epass + select);
 					switch (select) {
 					case Admin:
 						JOptionPane.showMessageDialog(null, "Welcome Admin! You can update and read file.");
@@ -42,23 +51,23 @@ public class Assignment3 {
 						JOptionPane.showMessageDialog(null, "Welcome Student! You can only read file.");
 						break;
 					default:
-						// JOptionPane.showMessageDialog(null, "Good Bye!");
+						break;
 					}
 					break;
 				} else {
-					JOptionPane.showMessageDialog(null, "Invalid password");
+
+					JOptionPane.showMessageDialog(null, "Invalid Password");
+					i++;
 				}
 			} else {
+
 				JOptionPane.showMessageDialog(null, "Invalid Username");
+				i++;
 				euser = JOptionPane.showInputDialog("Enter Username");
-				x = x++;
 			}
-			
-			while(x<limit){
-				JOptionPane.showMessageDialog(null,"To many attemps. Your account is now locked. Please contact administrator");
-				break;
-			}
-			
+		}
+		while (i >= 3) {
+			JOptionPane.showMessageDialog(null, "Account is locked");
 			break;
 		}
 
